@@ -1,4 +1,5 @@
-set(NCURSES_VERSION_STR 6.3)
+set(NCURSES_VERSION_STR 6.2)
+
 vcpkg_download_distfile(
     ARCHIVE_PATH
     URLS
@@ -6,7 +7,7 @@ vcpkg_download_distfile(
         "ftp://ftp.invisible-island.net/ncurses/ncurses-${NCURSES_VERSION_STR}.tar.gz"
         "https://ftp.gnu.org/gnu/ncurses/ncurses-${NCURSES_VERSION_STR}.tar.gz"
     FILENAME "ncurses-${NCURSES_VERSION_STR}.tgz"
-    SHA512 5373f228cba6b7869210384a607a2d7faecfcbfef6dbfcd7c513f4e84fbd8bcad53ac7db2e7e84b95582248c1039dcfc7c4db205a618f7da22a166db482f0105
+    SHA512 4c1333dcc30e858e8a9525d4b9aefb60000cfc727bc4a1062bace06ffc4639ad9f6e54f6bdda0e3a0e5ea14de995f96b52b3327d9ec633608792c99a1e8d840d
 )
 
 vcpkg_extract_source_archive_ex(
@@ -15,6 +16,7 @@ vcpkg_extract_source_archive_ex(
 )
 
 set(OPTIONS
+    --enable-widec
     --disable-db-install
     --enable-pc-files
     --without-ada
@@ -39,12 +41,12 @@ if(VCPKG_TARGET_IS_MINGW)
 endif()
 
 set(OPTIONS_DEBUG
-    "--with-pkg-config-libdir=${CURRENT_INSTALLED_DIR}/debug/lib/pkgconfig"
+    --with-pkg-config-libdir=${CURRENT_INSTALLED_DIR}/debug/lib/pkgconfig
     --with-debug
     --without-normal
 )
 set(OPTIONS_RELEASE
-    "--with-pkg-config-libdir=${CURRENT_INSTALLED_DIR}/lib/pkgconfig"
+    --with-pkg-config-libdir=${CURRENT_INSTALLED_DIR}/lib/pkgconfig
     --without-debug
     --with-normal
 )
