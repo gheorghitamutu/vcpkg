@@ -23,7 +23,7 @@ set(OPTIONS
     --enable-pc-files
     --without-ada
     --without-manpages
-    --without-progs
+   # --without-progs
     --without-tack
     --without-tests
     --with-terminfo-dirs=/usr/share/terminfo:/usr/lib/terminfo:/etc/terminfo
