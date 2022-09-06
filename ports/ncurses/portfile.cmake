@@ -17,13 +17,16 @@ vcpkg_extract_source_archive_ex(
 
 set(OPTIONS
     --enable-widec
-    --disable-db-install
+    # --disable-db-install
+    --enable-termcap
+    --with-termlib
     --enable-pc-files
     --without-ada
     --without-manpages
     --without-progs
     --without-tack
     --without-tests
+    --with-terminfo-dirs=/usr/share/terminfo:/usr/lib/terminfo:/etc/terminfo
 )
 if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
     list(APPEND OPTIONS
