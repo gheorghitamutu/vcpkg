@@ -10,8 +10,8 @@ vcpkg_download_distfile(
     SHA512 4c1333dcc30e858e8a9525d4b9aefb60000cfc727bc4a1062bace06ffc4639ad9f6e54f6bdda0e3a0e5ea14de995f96b52b3327d9ec633608792c99a1e8d840d
 )
 
-vcpkg_extract_source_archive_ex(
-    OUT_SOURCE_PATH SOURCE_PATH
+vcpkg_extract_source_archive(
+    SOURCE_PATH
     ARCHIVE "${ARCHIVE_PATH}"
 )
 
@@ -43,6 +43,9 @@ if(VCPKG_TARGET_IS_MINGW)
     )
 endif()
 
+file(MAKE_DIRECTORY "${CURRENT_INSTALLED_DIR}/debug/lib/pkgconfig")
+file(MAKE_DIRECTORY "${CURRENT_INSTALLED_DIR}/lib/pkgconfig")
+
 set(OPTIONS_DEBUG
     --with-pkg-config-libdir=${CURRENT_INSTALLED_DIR}/debug/lib/pkgconfig
     --with-debug
@@ -55,7 +58,8 @@ set(OPTIONS_RELEASE
 )
 
 vcpkg_configure_make(
-    SOURCE_PATH ${SOURCE_PATH}
+    SOURCE_PATH "${SOURCE_PATH}"
+    DETERMINE_BUILD_TRIPLET
     OPTIONS ${OPTIONS}
     OPTIONS_DEBUG ${OPTIONS_DEBUG}
     OPTIONS_RELEASE ${OPTIONS_RELEASE}
