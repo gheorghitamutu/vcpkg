@@ -8,6 +8,10 @@ select_library_configurations(LIBUSB)
 
 set(LIBUSB_INCLUDE_DIRS "${LIBUSB_INCLUDE_DIR}")
 
-if (@VCPKG_TARGET_IS_LINUX@)
-    list(APPEND LIBUSB_LIBRARIES udev)
+list(APPEND LIBUSB_LIBRARIES @LIBUSB_LINK_LIBRARIES@)
+
+if (@VCPKG_TARGET_IS_OSX@)
+    list(APPEND LIBUSB_LIBRARIES "-framework Cocoa")
+    list(APPEND LIBUSB_LIBRARIES "-framework IOKit")
+    list(APPEND LIBUSB_LIBRARIES "-framework Security")
 endif()

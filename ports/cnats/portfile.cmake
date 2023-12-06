@@ -1,9 +1,11 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO nats-io/nats.c
-    REF b26143da7566e816db66e86f6336ebf5c226c4ad #v3.4.1
-    SHA512 6422d3d5b59a700ac56730870dab1bbdadd8f85c9a0cef2c685cdd36189b1689d04d5a710500fbc5299445ca32df9434b404fae3018e8266c284aa34259f110a
-    HEAD_REF master
+    REF "v${VERSION}"
+    SHA512 0670a2b7fb70a49e2b1f5cbccf2406a3ecaf04b48b4147dc2ead9cb106f1673efa79b5e40d3bb557986ade35da2158b58b324603f98a58258a497dc57cb5d700
+    HEAD_REF main
+    PATCHES
+        fix-sodium-dep.patch
 )
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
